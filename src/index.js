@@ -5,6 +5,7 @@ import App from './App';
 import * as serviceWorker from './serviceWorker';
 import 'semantic-ui-less/semantic.less';
 import 'tachyons-less/tachyons.less';
+import './App.css';
 
 ReactDOM.render(<App />, document.getElementById('root'));
 

@@ -29,10 +29,12 @@ Upgrade [Nautilus Braids] website to [Wordpress].
 * build barebones theme for [Wordpress]
 * begin building front-end application with [React]
 
-## 08 June 2019 (3hrs)
+## 08 June 2019 (6hrs)
 
 * initial routing built using [React Router]
 * theming with [React Semantic UI] and [Tachyons]
+* prototype simple header/content/footer layout
+* tidy up imported text
 
 [Nautilus Braids]: https://nautilusbraids.co.nz
 [Wordpress]: https://wordpress.org
