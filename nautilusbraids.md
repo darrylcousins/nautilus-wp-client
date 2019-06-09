@@ -36,6 +36,11 @@ Upgrade [Nautilus Braids] website to [Wordpress].
 * prototype simple header/content/footer layout
 * tidy up imported text
 
+## 09 June 2019 (4hrs)
+
+* get code in order - install eslint and tidy
+* start working up a landing page
+
 [Nautilus Braids]: https://nautilusbraids.co.nz
 [Wordpress]: https://wordpress.org
 [Nginx]: https://nginx.org

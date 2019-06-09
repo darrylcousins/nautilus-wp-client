@@ -7,22 +7,18 @@
  * Last modified :
  */
 import React from 'react';
+import { Header } from 'semantic-ui-react';
 import PropTypes from 'prop-types';
+import LandingPageHeader from './LandingPageHeader';
 
 const LandingPage = (props) => {
   const { data } = props;
   const { title, content } = data;
+  const style = {
+    h1: { marginTop: '3em' },
+  }
   return (
-    <section className="pa3 pa5-ns bt b--black-10 bg-white">
-      <header className="pv3">
-        <h1 className="pv3">{ title }</h1>
-      </header>
-      <h1>Landing Page</h1>
-      <content
-        className="lh-copy measure"
-        dangerouslySetInnerHTML={{ __html: content }}
-      />
-    </section>
+    <LandingPageHeader />
   );
 };
 
