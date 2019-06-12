@@ -6,7 +6,7 @@
  * Created at    :
  * Last modified :
  */
-const graphqlEndpoint = 'http://10.42.0.98/graphql';
+const graphqlEndpoint = 'http://10.42.0.99/graphql';
 
 /*
  * Helper function for http fetch requests.

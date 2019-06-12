@@ -41,6 +41,14 @@ Upgrade [Nautilus Braids] website to [Wordpress].
 * get code in order - install eslint and tidy
 * start working up a landing page
 
+## 10 June 2019 (2hrs)
+
+* work up responsive container (mobile version)
+
+## 11 June 2019 (1hrs)
+
+* work up menu and continue with container and landing page
+
 [Nautilus Braids]: https://nautilusbraids.co.nz
 [Wordpress]: https://wordpress.org
 [Nginx]: https://nginx.org

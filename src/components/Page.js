@@ -8,8 +8,12 @@
  */
 import React, { Component } from 'react';
 import ReactRouterPropTypes from 'react-router-prop-types';
+import {
+  Loader,
+  Dimmer,
+} from 'semantic-ui-react';
 import fetchPromise from '../lib/DataFetch';
-import LandingPage from './LandingPage';
+import ResponsiveContainer from './ResponsiveContainer';
 
 class Page extends Component {
   constructor(props) {
@@ -85,8 +89,8 @@ class Page extends Component {
 
   render() {
     const { externalData } = this.state;
-    if (externalData === null) return <div>Loading ...</div>;
-    if (externalData.slug === 'index') return <LandingPage data={externalData} />;
+    if (externalData === null) return <Dimmer active><Loader /></Dimmer>;
+    //if (externalData.slug === 'index') return <LandingPage data={externalData} />;
     return (
       <section className="pa3 pa5-ns bt b--black-10 bg-white">
         <header className="pv3">
