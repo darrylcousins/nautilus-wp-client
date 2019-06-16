@@ -10,7 +10,6 @@ import { Responsive } from 'semantic-ui-react';
 
 const getWidth = () => {
   const isSSR = typeof window === 'undefined';
-  console.log(window.location.pathname);
 
   return isSSR ? Responsive.onlyTablet.minWidth : window.innerWidth;
 };

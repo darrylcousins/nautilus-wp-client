@@ -16,8 +16,8 @@ import {
   Segment,
   Visibility,
 } from 'semantic-ui-react';
-import PageHeader from './PageHeader';
 import HeaderMenu from './HeaderMenu';
+import PageHeader from './PageHeader';
 import getWidth from '../lib/GetWidth';
 
 class DesktopContainer extends Component {
@@ -33,13 +33,14 @@ class DesktopContainer extends Component {
   showFixedMenu() { this.setState({ fixed: true }); }
 
   render() {
-    const { children, slug } = this.props;
+    const { children } = this.props;
     const { fixed } = this.state;
-    const landing = slug === "index";
-    console.log("Slug", slug);
 
     return (
-      <Responsive getWidth={getWidth} minWidth={Responsive.onlyTablet.minWidth}>
+      <Responsive
+        getWidth={getWidth}
+        minWidth={Responsive.onlyTablet.minWidth}
+      >
         <Visibility
           once={false}
           onBottomPassed={this.showFixedMenu}
@@ -48,12 +49,14 @@ class DesktopContainer extends Component {
           <Segment
             inverted
             textAlign="center"
-            style={{ minHeight: landing ? 700 : 0, padding: '1em 0em' }}
+            style={{
+              minHeight: 50,
+            }}
             vertical
           >
             <Menu
+              inverted
               fixed={fixed ? 'top' : null}
-              inverted={!fixed}
               pointing={!fixed}
               secondary={!fixed}
               size="large"
@@ -62,10 +65,10 @@ class DesktopContainer extends Component {
                 <HeaderMenu />
               </Container>
             </Menu>
-            <PageHeader landing={ landing } />
           </Segment>
-          {children}
         </Visibility>
+
+          {children}
 
       </Responsive>
     );

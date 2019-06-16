@@ -7,7 +7,7 @@
  * Created at    :
  * Last modified :
  */
-import React, { Component } from 'react';
+import React, { Component, createRef } from 'react';
 import PropTypes from 'prop-types';
 import {
   Container,
@@ -16,6 +16,7 @@ import {
   Responsive,
   Segment,
   Sidebar,
+  Ref,
 } from 'semantic-ui-react';
 import PageHeader from './PageHeader';
 import getWidth from '../lib/GetWidth';
@@ -26,6 +27,7 @@ class MobileContainer extends Component {
     super(props);
     this.handleSideBarHide = this.handleSideBarHide.bind(this);
     this.handleToggle = this.handleToggle.bind(this);
+    this.segmentRef = createRef();
     this.state = {};
   }
 
@@ -34,7 +36,7 @@ class MobileContainer extends Component {
   handleToggle() { this.setState({ sidebarOpened: true }); }
 
   render() {
-    const { children, slug } = this.props;
+    const { children } = this.props;
     const { sidebarOpened } = this.state;
 
     return (
@@ -48,29 +50,43 @@ class MobileContainer extends Component {
           animation="push"
           inverted
           onHide={this.handleSideBarHide}
+          onClick={this.handleSideBarHide}
           vertical
           visible={sidebarOpened}
         >
           <HeaderMenu />
         </Sidebar>
 
-        <Sidebar.Pusher dimmed={sidebarOpened}>
+        <Sidebar.Pusher
+          dimmed={sidebarOpened}
+        >
           <Segment
-            inverted
-            textAlign='center'
-            style={{ minHeight: slug === "index" ? 350 : 0, padding: '1em 0em' }}
+            textAlign="center"
             vertical
+            style={{
+              borderBottom: 'none',
+              textAlign: 'left',
+            }}
           >
-            <Container>
-              <Menu inverted pointing secondary size='large'>
-                <Menu.Item onClick={this.handleToggle}>
-                  <Icon name='sidebar' />
+              <Menu
+                pointing
+                secondary
+                style={{
+                  borderBottom: 'none',
+                  display: 'inline',
+                  textAlign: 'left',
+                }}
+              >
+                <Menu.Item
+                  onClick={this.handleToggle}
+                  style={{
+                    display: 'inline',
+                  }}
+                >
+                  <Icon name="sidebar" />
                 </Menu.Item>
               </Menu>
-            </Container>
-            <PageHeader mobile landing={ slug === 'index' } />
           </Segment>
-
           {children}
         </Sidebar.Pusher>
       </Responsive>

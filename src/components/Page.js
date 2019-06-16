@@ -11,14 +11,21 @@ import ReactRouterPropTypes from 'react-router-prop-types';
 import {
   Loader,
   Dimmer,
+  Segment,
+  Container,
+  Header,
+  Image,
+  List,
 } from 'semantic-ui-react';
+import PageHeader from './PageHeader';
 import fetchPromise from '../lib/DataFetch';
-import ResponsiveContainer from './ResponsiveContainer';
+import NautilusIcon from './NautilusIcon';
 
 class Page extends Component {
   constructor(props) {
     super(props);
     this.state = {
+      landing: false,
       externalData: {
         title: '',
         date: '',
@@ -30,6 +37,8 @@ class Page extends Component {
   }
 
   componentDidMount() {
+    const landing = Page.isLandingPage(this.props);
+    this.setState({ landing });
     const slug = Page.getSlugFromMatch(this.props);
     this.loadAsyncData(slug);
   }
@@ -40,8 +49,14 @@ class Page extends Component {
   componentWillReceiveProps(nextProps) {
     const { match } = this.props;
     if (nextProps.match.params !== match.params) {
-      this.setState({ externalData: null });
       const slug = Page.getSlugFromMatch(nextProps);
+      //const landing = slug === 'index';
+      const landing = Page.isLandingPage(nextProps);
+      console.log('Changed props, landing: ', landing);
+      this.setState({
+        externalData: null,
+        landing,
+      });
       this.loadAsyncData(slug);
     }
   }
@@ -50,6 +65,14 @@ class Page extends Component {
     if (this.asyncRequest && 'cancel' in this.asyncRequest) {
       this.asyncRequest.cancel();
     }
+  }
+
+  /*
+   * matches '/' root only
+   */
+  static isLandingPage(props) {
+    const urlParams = props.match.params;
+    return !('slug' in urlParams);
   }
 
   static getSlugFromMatch(props) {
@@ -84,23 +107,34 @@ class Page extends Component {
     this.asyncRequest = fetchPromise(body)
       .then(res => res.json())
       .then(res => this.setState({ externalData: res.data.pages.edges[0].node }))
-      .catch(error => console.error(error));
+      .catch((error) => {
+        console.error(error);
+        this.setState({ externalData: { title: `${error}` } });
+      });
   }
 
   render() {
-    const { externalData } = this.state;
+    const { landing, externalData } = this.state;
     if (externalData === null) return <Dimmer active><Loader /></Dimmer>;
-    //if (externalData.slug === 'index') return <LandingPage data={externalData} />;
+
     return (
-      <section className="pa3 pa5-ns bt b--black-10 bg-white">
-        <header className="pv3">
-          <h1 className="pv3">{externalData.title}</h1>
-        </header>
-        <content
-          className="lh-copy measure"
-          dangerouslySetInnerHTML={{ __html: externalData.content }}
-        />
-      </section>
+      <div>
+          <PageHeader landing={ landing } />
+          <Container
+            style={{
+              paddingTop: '2em',
+            }}
+          >
+            <Header
+              as="h1"
+            >
+              { externalData.title }
+            </Header>
+            <p
+              dangerouslySetInnerHTML={{ __html: externalData.content }}
+            />
+          </Container>
+      </div>
     );
   }
 }

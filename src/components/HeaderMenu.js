@@ -12,7 +12,7 @@ import {
   Menu,
 } from 'semantic-ui-react';
 
-const HeaderMenu = (props) => {
+const HeaderMenu = () => {
   const pages = [
     { title: 'Home', slug: '/index' },
     { title: 'Braided Ropes', slug: '/braided-rope' },

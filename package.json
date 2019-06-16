@@ -15,7 +15,7 @@
   "scripts": {
     "start": "craco start",
     "build": "craco build",
-    "test": "craco test",
+    "test": "./node_modules/eslint/bin/eslint.js src/App.js src/lib/*.js src/components/*.js",
     "eject": "craco eject"
   },
   "eslintConfig": {

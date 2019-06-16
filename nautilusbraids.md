@@ -49,6 +49,17 @@ Upgrade [Nautilus Braids] website to [Wordpress].
 
 * work up menu and continue with container and landing page
 
+## 16 June 2019 (5hrs)
+
+* more work on menu, landing page, and responsive layout
+* sorted a scalable vector graphic as icon
+
+# TODO
+
+* nice error page if http request error or empty
+* get landing page to work nicely
+* footer menu
+
 [Nautilus Braids]: https://nautilusbraids.co.nz
 [Wordpress]: https://wordpress.org
 [Nginx]: https://nginx.org
