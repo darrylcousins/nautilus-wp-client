@@ -54,10 +54,22 @@ Upgrade [Nautilus Braids] website to [Wordpress].
 * more work on menu, landing page, and responsive layout
 * sorted a scalable vector graphic as icon
 
+## 20 June 2019 (2hrs)
+
+* sort out theming, add colour
+
+## 21 June 2019 (2hrs)
+
+* more responsive layout for mobile version
+* consider search functionality
+
 # TODO
 
 * nice error page if http request error or empty
 * get landing page to work nicely
+* search
+* distributor login
+* contact form
 * footer menu
 
 [Nautilus Braids]: https://nautilusbraids.co.nz
