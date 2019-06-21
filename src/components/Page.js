@@ -17,8 +17,9 @@ import {
   Image,
   List,
 } from 'semantic-ui-react';
-import PageHeader from './PageHeader';
 import fetchPromise from '../lib/DataFetch';
+import PageHeader from './PageHeader';
+import LandingPage from './LandingPage';
 import NautilusIcon from './NautilusIcon';
 
 class Page extends Component {
@@ -86,6 +87,7 @@ class Page extends Component {
       variables: {
         first: 1,
         where: { name: slug },
+        //where: { search: 'tenacity' },
       },
       query: `
         query GET_PAGES($first: Int, $where: RootQueryToPageConnectionWhereArgs!) {
@@ -116,10 +118,31 @@ class Page extends Component {
   render() {
     const { landing, externalData } = this.state;
     if (externalData === null) return <Dimmer active><Loader /></Dimmer>;
+    if (landing) {
+      return (
+        <div>
+            <PageHeader landing />
+            <Container
+              style={{
+                paddingTop: '2em',
+              }}
+            >
+              <Header
+                as="h1"
+              >
+                Landing { externalData.title }
+              </Header>
+              <p
+                dangerouslySetInnerHTML={{ __html: externalData.content }}
+              />
+            </Container>
+        </div>
+      );
+    };
 
     return (
       <div>
-          <PageHeader landing={ landing } />
+          <PageHeader landing={landing} />
           <Container
             style={{
               paddingTop: '2em',

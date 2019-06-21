@@ -12,17 +12,28 @@ import {
   Menu,
   Icon,
 } from 'semantic-ui-react';
+import styles from '../lib/Styles'
 
 const ContactMenu = () => {
   return (
     <Fragment>
-      <Menu.Item>
+      <Menu.Item
+        style={styles.link}
+      >
         <Icon name="phone" />
-        <a href="tel:03324444">03 324 444</a>
+        <a
+          style={styles.link_no_padding}
+          href="tel:03324444"
+        >03 324 444</a>
       </Menu.Item>
-      <Menu.Item>
-        <Icon name="at" />
-        <a href="mail:rope@nautilusbraids.co.nz">rope@nautilusbraids.co.nz</a>
+      <Menu.Item
+        style={styles.link_no_padding}
+      >
+        <Icon name="mail" />
+        <a 
+          style={styles.link}
+          href="mail:rope@nautilusbraids.co.nz"
+        >rope@nautilusbraids.co.nz</a>
       </Menu.Item>
     </Fragment>
   );

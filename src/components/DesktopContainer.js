@@ -49,9 +49,6 @@ class DesktopContainer extends Component {
           <Segment
             inverted
             textAlign="center"
-            style={{
-              minHeight: 50,
-            }}
             vertical
           >
             <Menu

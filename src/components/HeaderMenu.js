@@ -6,11 +6,13 @@
  * Created at    :
  * Last modified :
  */
-import React from 'react';
+import React, { Fragment } from 'react';
 import { Link } from 'react-router-dom';
 import {
   Menu,
+  Icon,
 } from 'semantic-ui-react';
+import styles from '../lib/Styles';
 
 const HeaderMenu = () => {
   const pages = [
@@ -22,7 +24,8 @@ const HeaderMenu = () => {
     { title: 'Distributors', slug: '/distributors' },
     { title: 'About', slug: '/about' },
   ];
-  return (
+
+  const HeaderMenuMap = ({pages}) => (
     pages.map(page => (
       <Menu.Item
         as={Link}
@@ -32,6 +35,19 @@ const HeaderMenu = () => {
         { page.title }
       </Menu.Item>
     ))
+  )
+
+  return (
+    <Fragment>
+      <HeaderMenuMap pages={pages} />
+      <Menu.Item
+      >
+        <Icon name="sign-in" />
+        <a 
+          href="mail:rope@nautilusbraids.co.nz"
+        >Sign In</a>
+      </Menu.Item>
+    </Fragment>
   );
 };
 

@@ -1,5 +1,5 @@
 /*
- * Component to display landing page header
+ * Component to display page header
  *
  * @author Darryl Cousins <darryljcousins@gmail.com>
  *
@@ -18,11 +18,13 @@ import {
   List,
   Menu,
   Icon,
+  Input,
   Responsive,
 } from 'semantic-ui-react';
 import NautilusIcon from './NautilusIcon';
 import ContactMenu from './ContactMenu';
 import getWidth from '../lib/GetWidth';
+import styles from '../lib/Styles'
 
 class PageHeader extends Component {
   constructor(props) {
@@ -45,6 +47,8 @@ class PageHeader extends Component {
   render() {
     const { landing } = this.state;
     console.log('Header landing ', landing);
+    const header1 = 'Nautilus Braids';
+    const header2 = 'Makers of high performance braided rope';
     return (
       <div>
         <Responsive
@@ -55,40 +59,42 @@ class PageHeader extends Component {
             inverted
             textAlign="center"
             style={{
-              minHeight: landing ? 600 : 30,
+              minHeight: landing ? 700 : 30,
             }}
             vertical
           >
+            <Input
+              inverted
+              transparent
+              icon="search"
+              size="large"
+              placeholder='Search...'
+              className="fr mr7 pa0"
+            />
             <Header
+              inverted
               as="h1"
               textAlign={landing ? "center" : "left"}
-              inverted
-              style={{
-                fontSize: landing ? '5em' : '2em',
-                paddingTop: landing ? '2em' : '0em',
-                paddingLeft: landing ? '0em' : '2em',
-              }}
+              style={landing ? styles.pageheaderh1_desktop_landing : styles.pageheaderh1_desktop}
             >
               <NautilusIcon
                 scaleNumber={landing ? 2 : 1}
-                color="#ffffff"
+                color="#AAA9AD"
               />
               <Header.Content>
-                Nautilus Braids
+                { header1 }
                 <Header.Subheader
-                  style={{
-                    fontSize: landing ? '0.4em' : '0.4em',
-                    color: 'grey',
-                    textAlign: 'left',
-                    paddingLeft: '0.2em',
-                  }}
+                  style={landing ? styles.pageheaderh2_desktop_landing : styles.pageheaderh2_desktop}
                 >
-                  High performance braided rope
+                  { header2 }
                 </Header.Subheader>
                 <Menu
                   inverted
                   borderless
-                  size="large"
+                  size={landing ? "large" : "tiny"}
+                  style={{
+                    paddingLeft: '1em',
+                  }}
                 >
                  <ContactMenu />
                </Menu>
@@ -102,39 +108,33 @@ class PageHeader extends Component {
         >
           <Segment
             textAlign="center"
+            inverted
             style={{
-              minHeight: landing ? 150 : 30,
+              minHeight: landing ? 700 : 30,
             }}
             vertical
           >
             <Header
               as="h1"
               textAlign={landing ? "center" : "left"}
-              style={{
-                fontSize: landing ? '2em' : '2em',
-                paddingTop: '0em',
-                paddingLeft: landing ? '0em' : '2em',
-              }}
+              style={landing ? styles.pageheaderh1_mobile_landing : styles.pageheaderh1_mobile}
             >
               <NautilusIcon
                 scaleNumber={landing ? 1 : 0.8}
-                color="#000000"
+                color="#AAA9AD"
               />
               <Header.Content>
-                Nautilus Braids
+                { header1 }
                 <Header.Subheader
-                  style={{
-                    fontSize: landing ? '0.4em' : '0.4em',
-                    color: 'grey',
-                    textAlign: 'left',
-                    paddingLeft: '0.2em',
-                  }}
+                  style={landing ? styles.pageheaderh2_mobile_landing : styles.pageheaderh2_mobile}
                 >
-                  High performance braided rope
+                  { header2 }
                 </Header.Subheader>
                 <Menu
                   stackable
                   borderless
+                  inverted
+                  size="tiny"
                   style={{
                     border: 'none',
                     boxShadow: 'none',

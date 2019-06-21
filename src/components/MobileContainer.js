@@ -63,14 +63,17 @@ class MobileContainer extends Component {
           <Segment
             textAlign="center"
             vertical
+                inverted
             style={{
               borderBottom: 'none',
               textAlign: 'left',
+              paddingBottom: '0em',
             }}
           >
               <Menu
                 pointing
                 secondary
+                inverted
                 style={{
                   borderBottom: 'none',
                   display: 'inline',

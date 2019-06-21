@@ -21,6 +21,7 @@ import {
 } from 'semantic-ui-react';
 import DesktopContainer from './DesktopContainer';
 import MobileContainer from './MobileContainer';
+import ContactMenu from './ContactMenu';
 
 const ResponsiveContainer = (props) => {
   const { children } = props;
@@ -52,11 +53,19 @@ const ResponsiveContainer = (props) => {
               </Grid.Column>
               <Grid.Column width={7}>
                 <Header as='h4' inverted>
-                  Footer Header
+                  Contact
                 </Header>
-                <p>
-                  Extra space for a call to action inside the footer that could help re-engage users.
-                </p>
+                <Menu
+                  inverted
+                  stackable
+                  borderless
+                  style={{
+                    border: 'none',
+                    boxShadow: 'none',
+                  }}
+                >
+                 <ContactMenu />
+               </Menu>
               </Grid.Column>
             </Grid.Row>
           </Grid>
