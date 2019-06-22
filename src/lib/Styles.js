@@ -8,11 +8,11 @@
  */
 export default {
   link: {
-    color: "#cd7f32",
+    color: '#cd7f32',
   },
   link_no_padding: {
-    color: "#cd7f32",
-    padding: "0em",
+    color: '#cd7f32',
+    padding: '0em',
   },
   pageheaderh1_desktop: {
     fontSize: '2em',
@@ -55,15 +55,13 @@ export default {
   pageheaderh2_mobile: {
     color: '#679267',
     fontSize: '0.4em',
-    color: 'grey',
     textAlign: 'left',
     paddingLeft: '0.2em',
   },
   pageheaderh2_mobile_landing: {
     fontSize: '0.3em',
     color: '#679267',
-    color: 'grey',
     textAlign: 'left',
     paddingLeft: '0.2em',
   },
-}
+};

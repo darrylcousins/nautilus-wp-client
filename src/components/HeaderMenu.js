@@ -12,7 +12,6 @@ import {
   Menu,
   Icon,
 } from 'semantic-ui-react';
-import styles from '../lib/Styles';
 
 const HeaderMenu = () => {
   const pages = [
@@ -25,7 +24,7 @@ const HeaderMenu = () => {
     { title: 'About', slug: '/about' },
   ];
 
-  const HeaderMenuMap = ({pages}) => (
+  const HeaderMenuMap = () => (
     pages.map(page => (
       <Menu.Item
         as={Link}
@@ -35,17 +34,18 @@ const HeaderMenu = () => {
         { page.title }
       </Menu.Item>
     ))
-  )
+  );
 
   return (
     <Fragment>
-      <HeaderMenuMap pages={pages} />
-      <Menu.Item
-      >
+      <HeaderMenuMap />
+      <Menu.Item>
         <Icon name="sign-in" />
-        <a 
+        <a
           href="mail:rope@nautilusbraids.co.nz"
-        >Sign In</a>
+        >
+Sign In
+        </a>
       </Menu.Item>
     </Fragment>
   );

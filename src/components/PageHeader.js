@@ -9,44 +9,36 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import {
-  Loader,
-  Dimmer,
   Segment,
-  Container,
   Header,
-  Image,
-  List,
   Menu,
-  Icon,
   Input,
   Responsive,
 } from 'semantic-ui-react';
 import NautilusIcon from './NautilusIcon';
 import ContactMenu from './ContactMenu';
 import getWidth from '../lib/GetWidth';
-import styles from '../lib/Styles'
+import styles from '../lib/Styles';
 
 class PageHeader extends Component {
   constructor(props) {
     super(props);
-    console.log('My props in pageheader: ', props);
-    this.state =  {
+    this.state = {
       landing: props.landing,
-    }
+    };
   }
 
   componentWillReceiveProps(nextProps) {
     const { landing } = this.props;
     if (nextProps.landing !== landing) {
       this.setState({
-        landing: nextProps.landing
+        landing: nextProps.landing,
       });
     }
   }
-  
+
   render() {
     const { landing } = this.state;
-    console.log('Header landing ', landing);
     const header1 = 'Nautilus Braids';
     const header2 = 'Makers of high performance braided rope';
     return (
@@ -68,13 +60,13 @@ class PageHeader extends Component {
               transparent
               icon="search"
               size="large"
-              placeholder='Search...'
+              placeholder="Search..."
               className="fr mr7 pa0"
             />
             <Header
               inverted
               as="h1"
-              textAlign={landing ? "center" : "left"}
+              textAlign={landing ? 'center' : 'left'}
               style={landing ? styles.pageheaderh1_desktop_landing : styles.pageheaderh1_desktop}
             >
               <NautilusIcon
@@ -91,13 +83,13 @@ class PageHeader extends Component {
                 <Menu
                   inverted
                   borderless
-                  size={landing ? "large" : "tiny"}
+                  size={landing ? 'large' : 'tiny'}
                   style={{
                     paddingLeft: '1em',
                   }}
                 >
-                 <ContactMenu />
-               </Menu>
+                  <ContactMenu />
+                </Menu>
               </Header.Content>
             </Header>
           </Segment>
@@ -116,7 +108,7 @@ class PageHeader extends Component {
           >
             <Header
               as="h1"
-              textAlign={landing ? "center" : "left"}
+              textAlign={landing ? 'center' : 'left'}
               style={landing ? styles.pageheaderh1_mobile_landing : styles.pageheaderh1_mobile}
             >
               <NautilusIcon
@@ -140,8 +132,8 @@ class PageHeader extends Component {
                     boxShadow: 'none',
                   }}
                 >
-                 <ContactMenu />
-               </Menu>
+                  <ContactMenu />
+                </Menu>
               </Header.Content>
             </Header>
           </Segment>

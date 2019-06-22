@@ -17,7 +17,6 @@ import {
   Visibility,
 } from 'semantic-ui-react';
 import HeaderMenu from './HeaderMenu';
-import PageHeader from './PageHeader';
 import getWidth from '../lib/GetWidth';
 
 class DesktopContainer extends Component {
@@ -65,7 +64,7 @@ class DesktopContainer extends Component {
           </Segment>
         </Visibility>
 
-          {children}
+        {children}
 
       </Responsive>
     );

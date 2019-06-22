@@ -10,15 +10,12 @@
 import React, { Component, createRef } from 'react';
 import PropTypes from 'prop-types';
 import {
-  Container,
   Icon,
   Menu,
   Responsive,
   Segment,
   Sidebar,
-  Ref,
 } from 'semantic-ui-react';
-import PageHeader from './PageHeader';
 import getWidth from '../lib/GetWidth';
 import HeaderMenu from './HeaderMenu';
 
@@ -63,32 +60,32 @@ class MobileContainer extends Component {
           <Segment
             textAlign="center"
             vertical
-                inverted
+            inverted
             style={{
               borderBottom: 'none',
               textAlign: 'left',
               paddingBottom: '0em',
             }}
           >
-              <Menu
-                pointing
-                secondary
-                inverted
+            <Menu
+              pointing
+              secondary
+              inverted
+              style={{
+                borderBottom: 'none',
+                display: 'inline',
+                textAlign: 'left',
+              }}
+            >
+              <Menu.Item
+                onClick={this.handleToggle}
                 style={{
-                  borderBottom: 'none',
                   display: 'inline',
-                  textAlign: 'left',
                 }}
               >
-                <Menu.Item
-                  onClick={this.handleToggle}
-                  style={{
-                    display: 'inline',
-                  }}
-                >
-                  <Icon name="sidebar" />
-                </Menu.Item>
-              </Menu>
+                <Icon name="sidebar" />
+              </Menu.Item>
+            </Menu>
           </Segment>
           {children}
         </Sidebar.Pusher>
