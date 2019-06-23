@@ -12,11 +12,11 @@ import {
   Segment,
   Header,
   Menu,
-  Input,
   Responsive,
 } from 'semantic-ui-react';
 import NautilusIcon from './NautilusIcon';
 import ContactMenu from './ContactMenu';
+import SearchInput from './SearchInput';
 import getWidth from '../lib/GetWidth';
 import styles from '../lib/Styles';
 
@@ -55,30 +55,27 @@ class PageHeader extends Component {
             }}
             vertical
           >
-            <Input
-              inverted
-              transparent
-              icon="search"
-              size="large"
-              placeholder="Search..."
-              className="fr mr7 pa0"
-            />
+            <SearchInput />
             <Header
               inverted
               as="h1"
               textAlign={landing ? 'center' : 'left'}
-              style={landing ? styles.pageheaderh1_desktop_landing : styles.pageheaderh1_desktop}
+              style={ landing ? { marginTop: '5em'} : { marginTop: '0em', marginLeft: '2em' }}
             >
               <NautilusIcon
                 scaleNumber={landing ? 2 : 1}
-                color="#AAA9AD"
+                color="#A1CAF1"
               />
-              <Header.Content>
+              <Header.Content
+                className={landing ? 'pageheaderh1 desktop landing' : 'pageheaderh1 desktop'}
+              >
                 { header1 }
-                <Header.Subheader
-                  style={landing ? styles.pageheaderh2_desktop_landing : styles.pageheaderh2_desktop}
-                >
-                  { header2 }
+                <Header.Subheader className="tl">
+                  <Header.Content
+                    className={landing ? 'pageheaderh2 desktop landing' : 'pageheaderh2 desktop'}
+                  >
+                    { header2 }
+                  </Header.Content>
                 </Header.Subheader>
                 <Menu
                   inverted
@@ -101,26 +98,27 @@ class PageHeader extends Component {
           <Segment
             textAlign="center"
             inverted
-            style={{
-              minHeight: landing ? 700 : 30,
-            }}
             vertical
           >
             <Header
               as="h1"
-              textAlign={landing ? 'center' : 'left'}
-              style={landing ? styles.pageheaderh1_mobile_landing : styles.pageheaderh1_mobile}
+              textAlign="left"
+              style={{ marginLeft: '1em' }}
             >
               <NautilusIcon
                 scaleNumber={landing ? 1 : 0.8}
-                color="#AAA9AD"
+                color="#A1CAF1"
               />
-              <Header.Content>
+              <Header.Content
+                className={landing ? 'pageheaderh1 mobile landing' : 'pageheaderh1 mobile'}
+              >
                 { header1 }
-                <Header.Subheader
-                  style={landing ? styles.pageheaderh2_mobile_landing : styles.pageheaderh2_mobile}
-                >
-                  { header2 }
+                <Header.Subheader style={{ textAlign: 'left' }}>
+                  <Header.Content
+                    className={landing ? 'pageheaderh2 mobile landing' : 'pageheaderh2 mobile'}
+                  >
+                    { header2 }
+                  </Header.Content>
                 </Header.Subheader>
                 <Menu
                   stackable

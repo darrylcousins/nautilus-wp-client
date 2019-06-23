@@ -16,11 +16,11 @@ import styles from '../lib/Styles';
 const ContactMenu = () => (
   <Fragment>
     <Menu.Item
-      style={styles.link}
+      style={styles.link_no_padding}
     >
       <Icon name="phone" />
       <a
-        style={styles.link_no_padding}
+        style={styles.link}
         href="tel:03324444"
       >
 03 324 444

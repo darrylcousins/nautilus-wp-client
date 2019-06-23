@@ -112,8 +112,9 @@ class Page extends Component {
     const { landing, externalData } = this.state;
     if (externalData === null) return <Dimmer active><Loader /></Dimmer>;
 
+    const slug = Page.getSlugFromMatch(this.props);
     const Content = ({ title, content }) => {
-      if (!landing) {
+      if (!landing && slug !== 'index') {
         return (
           <Fragment>
             <Header as="h1">{ title }</Header>
@@ -143,6 +144,7 @@ class Page extends Component {
         <Fragment>
           <Card.Group
             centered
+            stackable
             itemsPerRow={3}
             items={items}
           />

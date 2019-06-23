@@ -1,0 +1,32 @@
+/* declare app variables */
+@pageHeaderColor: #A1CAF1;
+@pageSubHeaderColor: #A2ADD0;
+@linkColor: #CD7F32;
+@invertedTextColor: rgba(255, 255, 255, 0.7);
+
+/* import semantics ui variables */
+@import './semantic-ui/theme.less';
+
+/* import tachyons variables */
+@import '../node_modules/tachyons-less/tachyons.less';
+
+/* page header bits */
+.pageheaderh1 {
+  color: @pageHeaderColor;
+}
+.pageheaderh1.desktop.landing {
+  font-size: 2em;
+}
+.pageheaderh2 {
+  margin-top: @spacing-small;
+  color: @pageSubHeaderColor;
+}
+
+/* search input results */
+.results.inverted {
+  background: @invertedBackground !important;
+  color: @invertedTextColor !important;
+}
+.header.inverted {
+  color: @invertedTextColor !important;
+}
