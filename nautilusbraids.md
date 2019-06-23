@@ -63,6 +63,11 @@ Upgrade [Nautilus Braids] website to [Wordpress].
 * more responsive layout for mobile version
 * consider search functionality
 
+## 23 June 2019 (3hrs)
+
+* some working out of styles and classes
+* continue with search input and results
+
 # TODO
 
 * nice error page if http request error or empty
