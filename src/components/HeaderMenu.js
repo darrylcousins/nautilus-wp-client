@@ -16,12 +16,13 @@ import {
 const HeaderMenu = () => {
   const pages = [
     { title: 'Home', slug: '/index' },
-    { title: 'Braided Ropes', slug: '/braided-rope' },
+    // { title: 'Braided Ropes', slug: '/braided-rope' },
     { title: 'Products', slug: '/products' },
-    { title: 'Product Information', slug: '/product-information' },
-    { title: 'Technical Data', slug: '/technical-data' },
+    // { title: 'Product Information', slug: '/product-information' },
+    // { title: 'Technical Data', slug: '/technical-data' },
     { title: 'Distributors', slug: '/distributors' },
     { title: 'About', slug: '/about' },
+    { title: 'Contact', slug: '/contact' },
   ];
 
   const HeaderMenuMap = () => (

@@ -1,6 +1,6 @@
 /* declare app variables */
-@pageHeaderColor: #A1CAF1;
-@pageSubHeaderColor: #A2ADD0;
+@pageHeaderColor: #A2ADD0;
+@pageSubHeaderColor: #A1CAF1;
 @linkColor: #CD7F32;
 @invertedTextColor: rgba(255, 255, 255, 0.7);
 
@@ -12,14 +12,26 @@
 
 /* page header bits */
 .pageheaderh1 {
+  .f1();
   color: @pageHeaderColor;
 }
 .pageheaderh1.desktop.landing {
-  font-size: 2em;
 }
 .pageheaderh2 {
+  .f5();
   margin-top: @spacing-small;
   color: @pageSubHeaderColor;
+}
+
+/* link bits */
+.link {
+  color: @linkColor !important;
+}
+.link_no_padding {
+  padding: 0em,
+}
+.link_padding_left {
+  padding: 0em 0em 0em 1em,
 }
 
 /* search input results */
@@ -30,3 +42,18 @@
 .header.inverted {
   color: @invertedTextColor !important;
 }
+.label.search {
+  background: @invertedBackground !important;
+  color: @invertedTextColor !important;
+}
+.ui.search > .results .result.active,
+.ui.search > .results .result:hover {
+  background: @invertedBackground !important;
+}
+div.result:hover > a,
+div.result.active > a,
+a.ui.label:hover,
+a.ui.label.active {
+  color: @linkColor !important;
+}
+

@@ -8,38 +8,65 @@
  */
 import _ from 'lodash';
 import React, { Component } from 'react';
-import faker from 'faker';
+import PropTypes from 'prop-types';
+import { Label } from 'semantic-ui-react';
+import fetchPromise from '../lib/DataFetch';
 import Search from './Search';
+import SearchResultRenderer from './SearchResultRenderer';
 
 const initialState = { isLoading: false, results: [], value: '' }
-
-const source = _.times(5, () => ({
-    title: faker.company.companyName(),
-    description: faker.company.catchPhrase(),
-    image: faker.internet.avatar(),
-    price: faker.finance.amount(0, 100, 2, '$'),
-}));
 
 class SearchInput extends Component {
   state = initialState
 
   handleResultSelect = (e, { result }) => this.setState({ value: result.title })
 
+  componentWillUnmount = () => {
+    if (this.asyncRequest && 'cancel' in this.asyncRequest) {
+      this.asyncRequest.cancel();
+    }
+  }
+
   handleSearchChange = (e, { value }) => {
     this.setState({ isLoading: true, value })
-
-    // space here for Promise and fetch
 
     setTimeout(() => {
       if (this.state.value.length < 1) return this.setState(initialState)
 
-      const re = new RegExp(_.escapeRegExp(this.state.value), 'i')
-      const isMatch = result => re.test(result.title)
+      const body = JSON.stringify({
+        variables: {
+          where: { search: value },
+        },
+        query: `
+          query GET_PAGES($where: RootQueryToPageConnectionWhereArgs!) {
+            pages(where: $where) {
+              edges {
+                node {
+                  title
+                  slug
+                }
+              }
+            }
+          }
+        `,
+      });
 
-      this.setState({
-        isLoading: false,
-        results: _.filter(source, isMatch),
-      })
+      //this.setState({
+      //  isLoading: false,
+      //  results: _.filter(source, isMatch),
+      //})
+
+      this.asyncRequest = fetchPromise(body)
+        .then(res => res.json())
+        .then(res => this.setState({
+          results: res.data.pages.edges,
+          isLoading: false,
+        }))
+        .catch((error) => {
+          console.error(error);
+          this.setState({ isLoading: false });
+      });
+
     }, 300)
   }
 
@@ -55,6 +82,7 @@ class SearchInput extends Component {
         onSearchChange={_.debounce(this.handleSearchChange, 500, {
           leading: true,
         })}
+        resultRenderer={SearchResultRenderer}
         results={results}
         value={value}
         {...this.props}

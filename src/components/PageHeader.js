@@ -60,11 +60,11 @@ class PageHeader extends Component {
               inverted
               as="h1"
               textAlign={landing ? 'center' : 'left'}
-              style={ landing ? { marginTop: '5em'} : { marginTop: '0em', marginLeft: '2em' }}
+              style={ landing ? { marginTop: '5em'} : { margin: '0em 0em 0em 2em' }}
             >
               <NautilusIcon
                 scaleNumber={landing ? 2 : 1}
-                color="#A1CAF1"
+                color="#A2ADD0"
               />
               <Header.Content
                 className={landing ? 'pageheaderh1 desktop landing' : 'pageheaderh1 desktop'}
@@ -100,6 +100,7 @@ class PageHeader extends Component {
             inverted
             vertical
           >
+            <SearchInput />
             <Header
               as="h1"
               textAlign="left"
@@ -107,7 +108,7 @@ class PageHeader extends Component {
             >
               <NautilusIcon
                 scaleNumber={landing ? 1 : 0.8}
-                color="#A1CAF1"
+                color="#A2ADD0"
               />
               <Header.Content
                 className={landing ? 'pageheaderh1 mobile landing' : 'pageheaderh1 mobile'}

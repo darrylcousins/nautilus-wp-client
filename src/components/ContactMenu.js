@@ -16,22 +16,22 @@ import styles from '../lib/Styles';
 const ContactMenu = () => (
   <Fragment>
     <Menu.Item
-      style={styles.link_no_padding}
+      className="link link_no_padding"
     >
       <Icon name="phone" />
       <a
-        style={styles.link}
+        className="link"
         href="tel:03324444"
       >
 03 324 444
       </a>
     </Menu.Item>
     <Menu.Item
-      style={styles.link_no_padding}
+      className="link link_padding_left"
     >
       <Icon name="mail" />
       <a
-        style={styles.link}
+        className="link"
         href="mail:rope@nautilusbraids.co.nz"
       >
 rope@nautilusbraids.co.nz
