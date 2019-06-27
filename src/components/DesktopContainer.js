@@ -57,9 +57,7 @@ class DesktopContainer extends Component {
               secondary={!fixed}
               size="large"
             >
-              <Container>
                 <HeaderMenu />
-              </Container>
             </Menu>
           </Segment>
         </Visibility>

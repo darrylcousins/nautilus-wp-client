@@ -41,6 +41,7 @@ class PageHeader extends Component {
     const { landing } = this.state;
     const header1 = 'Nautilus Braids';
     const header2 = 'Makers of high performance braided rope';
+    const iconColor = '#72A0C1';
     return (
       <div>
         <Responsive
@@ -64,7 +65,7 @@ class PageHeader extends Component {
             >
               <NautilusIcon
                 scaleNumber={landing ? 2 : 1}
-                color="#A2ADD0"
+                color={iconColor}
               />
               <Header.Content
                 className={landing ? 'pageheaderh1 desktop landing' : 'pageheaderh1 desktop'}
@@ -108,7 +109,7 @@ class PageHeader extends Component {
             >
               <NautilusIcon
                 scaleNumber={landing ? 1 : 0.8}
-                color="#A2ADD0"
+                color={iconColor}
               />
               <Header.Content
                 className={landing ? 'pageheaderh1 mobile landing' : 'pageheaderh1 mobile'}

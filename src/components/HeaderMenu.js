@@ -12,6 +12,8 @@ import {
   Menu,
   Icon,
 } from 'semantic-ui-react';
+import ContactModal from './ContactModal';
+import SignInModal from './SignInModal.js';
 
 const HeaderMenu = () => {
   const pages = [
@@ -22,7 +24,6 @@ const HeaderMenu = () => {
     // { title: 'Technical Data', slug: '/technical-data' },
     { title: 'Distributors', slug: '/distributors' },
     { title: 'About', slug: '/about' },
-    { title: 'Contact', slug: '/contact' },
   ];
 
   const HeaderMenuMap = () => (
@@ -40,14 +41,14 @@ const HeaderMenu = () => {
   return (
     <Fragment>
       <HeaderMenuMap />
-      <Menu.Item>
-        <Icon name="sign-in" />
-        <a
-          href="mail:rope@nautilusbraids.co.nz"
-        >
-Sign In
-        </a>
-      </Menu.Item>
+        <Menu.Item
+          as={ContactModal}
+        />
+      <Menu.Menu position="right">
+        <Menu.Item
+          as={SignInModal}
+        />
+      </Menu.Menu>
     </Fragment>
   );
 };

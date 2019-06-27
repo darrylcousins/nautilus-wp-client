@@ -14,6 +14,8 @@ Upgrade [Nautilus Braids] website to [Wordpress].
 * install [Wordpress]
 * install [Graphql] plugin: [wp-graphql]
 * install [Graphiql] browser: [wp-graphiql]
+* install Contact Form: [contact-form-7]
+* install message storage: [flamingo]
 * set up [permalinks] using [nginx location]
 * install and configure [jwt authentication] for data import
 
@@ -94,3 +96,5 @@ Upgrade [Nautilus Braids] website to [Wordpress].
 [React Router]: https://reacttraining.com/react-router/
 [React Semantic UI]: https://react.semantic-ui.com
 [Tachyons]: https://tachyons.io/
+[contact-form-7]: https://contactform7.com/
+[flamingo]: https://contactform7.com/save-submitted-messages-with-flamingo/

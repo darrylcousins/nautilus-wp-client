@@ -1,6 +1,6 @@
 /* declare app variables */
-@pageHeaderColor: #A2ADD0;
-@pageSubHeaderColor: #A1CAF1;
+@pageHeaderColor: #E3DAC9;
+@pageSubHeaderColor: #72A0C1;
 @linkColor: #CD7F32;
 @invertedTextColor: rgba(255, 255, 255, 0.7);
 
@@ -12,15 +12,23 @@
 
 /* page header bits */
 .pageheaderh1 {
-  .f1();
+  font-size: 5rem;
   color: @pageHeaderColor;
 }
 .pageheaderh1.desktop.landing {
 }
 .pageheaderh2 {
-  .f5();
-  margin-top: @spacing-small;
+  .f3();
+  margin-top: @spacing-large;
   color: @pageSubHeaderColor;
+}
+
+/* buttons and header menu */
+.ui.inverted.button.bn {
+  box-shadow: none !important;
+}
+.ui.secondary.inverted.pointing.menu a.item:hover {
+  color: @linkColor !important;
 }
 
 /* link bits */
