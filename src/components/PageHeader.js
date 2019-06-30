@@ -18,7 +18,6 @@ import NautilusIcon from './NautilusIcon';
 import ContactMenu from './ContactMenu';
 import SearchInput from './SearchInput';
 import getWidth from '../lib/GetWidth';
-import styles from '../lib/Styles';
 
 class PageHeader extends Component {
   constructor(props) {
@@ -41,7 +40,7 @@ class PageHeader extends Component {
     const { landing } = this.state;
     const header1 = 'Nautilus Braids';
     const header2 = 'Makers of high performance braided rope';
-    const iconColor = '#72A0C1';
+    const iconColor = '#E3DAC9';
     return (
       <div>
         <Responsive
@@ -61,7 +60,7 @@ class PageHeader extends Component {
               inverted
               as="h1"
               textAlign={landing ? 'center' : 'left'}
-              style={ landing ? { marginTop: '5em'} : { margin: '0em 0em 0em 2em' }}
+              style={landing ? { marginTop: '5em' } : { margin: '0em 0em 0em 2em' }}
             >
               <NautilusIcon
                 scaleNumber={landing ? 2 : 1}

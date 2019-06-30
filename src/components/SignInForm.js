@@ -6,31 +6,124 @@
  * Created at    :
  * Last modified :
  */
-import React from 'react'
-import { Form, Input, TextArea, Button, Select } from 'semantic-ui-react'
+import React, { Component, createRef } from 'react';
+import {
+  Form,
+  Input,
+  Button,
+  Message,
+} from 'semantic-ui-react';
+import { emailRegex, nameRegex, messageRegex } from '../lib/Regex';
 
-const SignInForm = () => (
-  <Form>
-    <Form.Field
-      id='form-textarea-control-name'
-      control={Input}
-      label='Name'
-      placeholder='Your name'
-    />
-    <Form.Field
-      id='form-textarea-control-email'
-      control={Input}
-      label='Email'
-      placeholder='Your password'
-    />
-    <Form.Field
-      id='form-button-control-public'
-      control={Button}
-      content='Confirm'
-      label='Label with htmlFor'
-    />
-  </Form>
-)
+class SignInForm extends Component {
+  state = {
+    email: '',
+    password: '',
+    formError: false,
+    formSuccess: false,
+    formloading: false,
+    emailError: false,
+    passwordError: false,
+    submittedEmail: '',
+    submittedPassword: '',
+  };
 
-export default SignInForm
+  handleChange = (e, { name, value }) => this.setState({ [name]: value });
 
+  handleSubmit = () => {
+    const { email, password } = this.state
+    const emailError = !emailRegex.test(email);
+    const passwordError = password === '';
+    this.setState({
+      emailError,
+      passwordError,
+    })
+    if (emailError || passwordError) {
+      this.setState({
+        formError: true,
+        formLoading: false,
+      })
+    } else {
+      this.setState({
+        submittedEmail: email,
+        submittedPassword: password,
+        formSuccess: true,
+        formError: false,
+        formLoading: false,
+      })
+    }
+  }
+
+  render() {
+    const {
+      email,
+      password,
+      formError,
+      formSuccess,
+      formLoading,
+      emailError,
+      passwordError,
+      submittedEmail,
+      submittedPassword,
+    } = this.state;
+    return (
+      <Form
+        error={formError}
+        success={formSuccess}
+        loading={formLoading}
+        onSubmit={this.handleSubmit}>
+        <Message
+          success
+          content='Thank you, welcome.'
+        />
+        <Message
+          error={emailError}
+          hidden
+          content='Please enter a valid email.'
+          />
+        <Form.Field
+          required
+          id="form-textarea-control-email"
+          error={emailError}
+          name="email"
+          value={email}
+          control={Input}
+          icon="user"
+          iconPosition="left"
+          placeholder="Enter email..."
+          autoComplete="username-email"
+          type="text"
+          label="Email"
+          onChange={this.handleChange}
+        />
+        <Message
+          error={passwordError}
+          hidden
+          content='Please enter a password.'
+          />
+        <Form.Field
+          required
+          id="form-textarea-control-password"
+          error={passwordError}
+          name="password"
+          value={password}
+          control={Input}
+          icon="lock"
+          iconPosition="left"
+          placeholder="Enter password..."
+          autoComplete="current-password"
+          type="password"
+          label="Password"
+          onChange={this.handleChange}
+        />
+        <Message
+          error
+          header={`I'm, sorry that won't work.`}
+          content='Valid email and password please.'
+        />
+      </Form>
+    );
+  };
+};
+
+export default SignInForm;

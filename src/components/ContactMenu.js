@@ -11,7 +11,6 @@ import {
   Menu,
   Icon,
 } from 'semantic-ui-react';
-import styles from '../lib/Styles';
 
 const ContactMenu = () => (
   <Fragment>
@@ -21,9 +20,9 @@ const ContactMenu = () => (
       <Icon name="phone" />
       <a
         className="link"
-        href="tel:03324444"
+        href="tel:033295857"
       >
-03 324 444
+03 329 5857
       </a>
     </Menu.Item>
     <Menu.Item

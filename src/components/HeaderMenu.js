@@ -10,10 +10,9 @@ import React, { Fragment } from 'react';
 import { Link } from 'react-router-dom';
 import {
   Menu,
-  Icon,
 } from 'semantic-ui-react';
 import ContactModal from './ContactModal';
-import SignInModal from './SignInModal.js';
+import SignInModal from './SignInModal';
 
 const HeaderMenu = () => {
   const pages = [
@@ -41,9 +40,9 @@ const HeaderMenu = () => {
   return (
     <Fragment>
       <HeaderMenuMap />
-        <Menu.Item
-          as={ContactModal}
-        />
+      <Menu.Item
+        as={ContactModal}
+      />
       <Menu.Menu position="right">
         <Menu.Item
           as={SignInModal}

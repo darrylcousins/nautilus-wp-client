@@ -10,7 +10,6 @@
 import PropTypes from 'prop-types';
 import React, { Component } from 'react';
 import {
-  Container,
   Menu,
   Responsive,
   Segment,
@@ -57,7 +56,7 @@ class DesktopContainer extends Component {
               secondary={!fixed}
               size="large"
             >
-                <HeaderMenu />
+              <HeaderMenu />
             </Menu>
           </Segment>
         </Visibility>

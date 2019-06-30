@@ -13,6 +13,7 @@
 /* page header bits */
 .pageheaderh1 {
   font-size: 5rem;
+  font-weight: light;
   color: @pageHeaderColor;
 }
 .pageheaderh1.desktop.landing {
@@ -24,8 +25,18 @@
 }
 
 /* buttons and header menu */
-.ui.inverted.button.bn {
+.ui.button.link, .ui.button.link.inverted{
+  .pa1();
   box-shadow: none !important;
+  background: transparent;
+  font-size: inherit;
+}
+.ui.button.link.inverted {
+  color: @invertedTextColor !important;
+  font-weight: normal;
+}
+.ui.button.link:hover {
+  color: @linkColor !important;
 }
 .ui.secondary.inverted.pointing.menu a.item:hover {
   color: @linkColor !important;

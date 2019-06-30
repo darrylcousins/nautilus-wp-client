@@ -70,6 +70,18 @@ Upgrade [Nautilus Braids] website to [Wordpress].
 * some working out of styles and classes
 * continue with search input and results
 
+## 25 June 2019 (2hrs)
+
+* complete search input and results
+
+## 28 June 2019 (4hrs)
+
+* work up sign in and contact forms
+
+## 29 June 2019 (4hrs)
+
+* sign in and contact forms
+
 # TODO
 
 * nice error page if http request error or empty

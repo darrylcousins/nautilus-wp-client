@@ -6,31 +6,28 @@
  * Created at    :
  * Last modified :
  */
-import _ from 'lodash';
-import React, { Component } from 'react';
+import React from 'react';
 import { Link } from 'react-router-dom';
 import PropTypes from 'prop-types';
-import { 
+import {
   Label,
   Icon,
 } from 'semantic-ui-react';
-import fetchPromise from '../lib/DataFetch';
-import Search from './Search';
 
-const SearchResultRenderer = ({ node }) => {
+const SearchResultRenderer = ({ node }) => (
+  <Label
+    className="search"
+    as={Link}
+    to={node.slug}
+  >
+    <Icon name="linkify" />
+    { node.title }
+  </Label>
+);
 
-  return (
-    <Label
-      className="search"
-      as={Link}
-      to={node.slug}
-    >
-      <Icon name="linkify" />
-      { node.title }
-    </Label>
-  );
+SearchResultRenderer.defaultProps = {
+  node: {},
 };
-
 SearchResultRenderer.propTypes = {
   node: PropTypes.shape({
     title: PropTypes.string,

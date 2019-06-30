@@ -6,36 +6,146 @@
  * Created at    :
  * Last modified :
  */
-import React from 'react'
-import { Form, Input, TextArea, Button, Select } from 'semantic-ui-react'
+import React, { Component } from 'react';
+import {
+  Form,
+  Input,
+  Message,
+} from 'semantic-ui-react';
+import { emailRegex, nameRegex, messageRegex } from '../lib/Regex';
 
-const ContactForm = () => (
-  <Form>
-    <Form.Field
-      id='form-textarea-control-name'
-      control={Input}
-      label='Name'
-      placeholder='Your name'
-    />
-    <Form.Field
-      id='form-textarea-control-email'
-      control={Input}
-      label='Email'
-      placeholder='Your email'
-    />
-    <Form.Field
-      id='form-textarea-control-message'
-      control={TextArea}
-      label='Message'
-      placeholder='Your message'
-    />
-    <Form.Field
-      id='form-button-control-public'
-      control={Button}
-      content='Confirm'
-      label='Label with htmlFor'
-    />
-  </Form>
-)
+class ContactForm extends Component {
+  state = {
+    name: '',
+    email: '',
+    message: '',
+    formError: false,
+    formSuccess: false,
+    formloading: false,
+    nameError: false,
+    emailError: false,
+    messageError: false,
+    submittedName: '',
+    submittedEmail: '',
+    submittedMessage: '',
+  };
 
-export default ContactForm
+  handleChange = (e, { name, value }) => this.setState({ [name]: value });
+
+  handleSubmit = () => {
+    const { name, email, message } = this.state
+    const nameError = !nameRegex.test(name);
+    const emailError = !emailRegex.test(email);
+    const messageError = !messageRegex.test(message);
+    this.setState({
+      nameError,
+      emailError,
+      messageError,
+    })
+    if (nameError || emailError || messageError) {
+      this.setState({
+        formError: true,
+        formLoading: false,
+      })
+    } else {
+      this.setState({
+        submittedName: name,
+        submittedEmail: email,
+        submittedMessage: message,
+        formSuccess: true,
+      })
+    }
+  }
+
+  render() {
+    const {
+      name,
+      email,
+      message,
+      formError,
+      formSuccess,
+      formLoading,
+      nameError,
+      emailError,
+      messageError,
+      submittedName,
+      submittedEmail,
+      submittedMessage,
+    } = this.state;
+
+    return (
+      <Form
+        error={formError}
+        success={formSuccess}
+        loading={formLoading}
+        onSubmit={this.handleSubmit}>
+        <Message
+          success
+          header={`Your message submitted.`}
+          content='Thank you, we will reply shortly.'
+        />
+        <Message
+          error={nameError}
+          hidden
+          content='Please enter a valid name.'
+          />
+        <Form.Field
+          required
+          error={nameError}
+          id="form-textarea-control-name"
+          name="name"
+          value={name}
+          control={Input}
+          icon="user"
+          iconPosition="left"
+          placeholder="Your name..."
+          type="text"
+          label="Your name"
+          onChange={this.handleChange}
+        />
+        <Message
+          error={emailError}
+          hidden
+          content='Please enter a valid email.'
+          />
+        <Form.Field
+          required
+          error={emailError}
+          id="form-textarea-control-email"
+          name="email"
+          value={email}
+          control={Input}
+          icon="at"
+          iconPosition="left"
+          placeholder="Your email..."
+          type="text"
+          label="Your email"
+          onChange={this.handleChange}
+        />
+        <Message
+          error={messageError}
+          hidden
+          content='Please enter a message.'
+          />
+        <Form.Field
+          required
+          error={messageError}
+          id="form-textarea-control-message"
+          name="message"
+          value={message}
+          control={Input}
+          control={Form.TextArea}
+          placeholder="Your message..."
+          label="Your message to us"
+          onChange={this.handleChange}
+        />
+        <Message
+          error
+          header={`I'm, sorry that won't work.`}
+          content='Name, email, and message please.'
+        />
+      </Form>
+    )};
+};
+
+export default ContactForm;

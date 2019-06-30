@@ -8,13 +8,11 @@
  */
 import _ from 'lodash';
 import React, { Component } from 'react';
-import PropTypes from 'prop-types';
-import { Label } from 'semantic-ui-react';
 import fetchPromise from '../lib/DataFetch';
 import Search from './Search';
 import SearchResultRenderer from './SearchResultRenderer';
 
-const initialState = { isLoading: false, results: [], value: '' }
+const initialState = { isLoading: false, results: [], value: '' };
 
 class SearchInput extends Component {
   state = initialState
@@ -27,15 +25,16 @@ class SearchInput extends Component {
     }
   }
 
-  handleSearchChange = (e, { value }) => {
-    this.setState({ isLoading: true, value })
+  handleSearchChange = (e, { input }) => {
+    this.setState({ isLoading: true, value: input });
 
     setTimeout(() => {
-      if (this.state.value.length < 1) return this.setState(initialState)
+      const { value } = this.state;
+      if (value.length < 1) return this.setState(initialState);
 
       const body = JSON.stringify({
         variables: {
-          where: { search: value },
+          where: { search: input },
         },
         query: `
           query GET_PAGES($where: RootQueryToPageConnectionWhereArgs!) {
@@ -51,11 +50,6 @@ class SearchInput extends Component {
         `,
       });
 
-      //this.setState({
-      //  isLoading: false,
-      //  results: _.filter(source, isMatch),
-      //})
-
       this.asyncRequest = fetchPromise(body)
         .then(res => res.json())
         .then(res => this.setState({
@@ -65,15 +59,14 @@ class SearchInput extends Component {
         .catch((error) => {
           console.error(error);
           this.setState({ isLoading: false });
-      });
-
-    }, 300)
+        });
+    }, 300);
   }
 
   render() {
-     const { isLoading, value, results } = this.state;
+    const { isLoading, value, results } = this.state;
     return (
-      <Search 
+      <Search
         placeholder="Search ..."
         className="inverted fr mr5"
         aligned="right"
@@ -87,8 +80,8 @@ class SearchInput extends Component {
         value={value}
         {...this.props}
       />
-    )
+    );
   }
-};
+}
 
 export default SearchInput;
