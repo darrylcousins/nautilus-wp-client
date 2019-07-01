@@ -21,7 +21,7 @@ class ContactForm extends Component {
     message: '',
     formError: false,
     formSuccess: false,
-    formloading: false,
+    formLoading: false,
     nameError: false,
     emailError: false,
     messageError: false,
@@ -33,7 +33,7 @@ class ContactForm extends Component {
   handleChange = (e, { name, value }) => this.setState({ [name]: value });
 
   handleSubmit = () => {
-    const { name, email, message } = this.state
+    const { name, email, message } = this.state;
     const nameError = !nameRegex.test(name);
     const emailError = !emailRegex.test(email);
     const messageError = !messageRegex.test(message);
@@ -41,19 +41,19 @@ class ContactForm extends Component {
       nameError,
       emailError,
       messageError,
-    })
+    });
     if (nameError || emailError || messageError) {
       this.setState({
         formError: true,
         formLoading: false,
-      })
+      });
     } else {
       this.setState({
         submittedName: name,
         submittedEmail: email,
         submittedMessage: message,
         formSuccess: true,
-      })
+      });
     }
   }
 
@@ -78,17 +78,18 @@ class ContactForm extends Component {
         error={formError}
         success={formSuccess}
         loading={formLoading}
-        onSubmit={this.handleSubmit}>
+        onSubmit={this.handleSubmit}
+      >
         <Message
           success
-          header={`Your message submitted.`}
-          content='Thank you, we will reply shortly.'
+          header="Your message submitted."
+          content="Thank you, we will reply shortly."
         />
         <Message
           error={nameError}
           hidden
-          content='Please enter a valid name.'
-          />
+          content="Please enter a valid name."
+        />
         <Form.Field
           required
           error={nameError}
@@ -106,8 +107,8 @@ class ContactForm extends Component {
         <Message
           error={emailError}
           hidden
-          content='Please enter a valid email.'
-          />
+          content="Please enter a valid email."
+        />
         <Form.Field
           required
           error={emailError}
@@ -125,15 +126,14 @@ class ContactForm extends Component {
         <Message
           error={messageError}
           hidden
-          content='Please enter a message.'
-          />
+          content="Please enter a message."
+        />
         <Form.Field
           required
           error={messageError}
           id="form-textarea-control-message"
           name="message"
           value={message}
-          control={Input}
           control={Form.TextArea}
           placeholder="Your message..."
           label="Your message to us"
@@ -141,11 +141,12 @@ class ContactForm extends Component {
         />
         <Message
           error
-          header={`I'm, sorry that won't work.`}
-          content='Name, email, and message please.'
+          header="Sorry the data does not validate."
+          content="Name, email, and message please."
         />
       </Form>
-    )};
-};
+    );
+  }
+}
 
 export default ContactForm;

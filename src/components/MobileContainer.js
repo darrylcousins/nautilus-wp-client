@@ -7,7 +7,7 @@
  * Created at    :
  * Last modified :
  */
-import React, { Component, createRef } from 'react';
+import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import {
   Icon,
@@ -15,6 +15,7 @@ import {
   Responsive,
   Segment,
   Sidebar,
+  Visibility,
 } from 'semantic-ui-react';
 import getWidth from '../lib/GetWidth';
 import HeaderMenu from './HeaderMenu';
@@ -24,21 +25,28 @@ class MobileContainer extends Component {
     super(props);
     this.handleSideBarHide = this.handleSideBarHide.bind(this);
     this.handleToggle = this.handleToggle.bind(this);
-    this.segmentRef = createRef();
-    this.state = {};
+    this.hideFixedMenu = this.hideFixedMenu.bind(this);
+    this.showFixedMenu = this.showFixedMenu.bind(this);
+    this.state = {
+      sidebarOpened: false,
+      fixed: false,
+    };
   }
 
   handleSideBarHide() { this.setState({ sidebarOpened: false }); }
 
   handleToggle() { this.setState({ sidebarOpened: true }); }
 
+  hideFixedMenu() { this.setState({ fixed: false }); }
+
+  showFixedMenu() { this.setState({ fixed: true }); }
+
   render() {
     const { children } = this.props;
-    const { sidebarOpened } = this.state;
+    const { fixed, sidebarOpened } = this.state;
 
     return (
       <Responsive
-        as={Sidebar.Pushable}
         getWidth={getWidth}
         maxWidth={Responsive.onlyMobile.maxWidth}
       >
@@ -57,36 +65,30 @@ class MobileContainer extends Component {
         <Sidebar.Pusher
           dimmed={sidebarOpened}
         >
-          <Segment
-            textAlign="center"
-            vertical
-            inverted
-            style={{
-              borderBottom: 'none',
-              textAlign: 'left',
-              paddingBottom: '0em',
-            }}
+          <Visibility
+            once={false}
+            onBottomPassed={this.showFixedMenu}
+            onBottomPassedReverse={this.hideFixedMenu}
           >
-            <Menu
-              pointing
-              secondary
+            <Segment
+              textAlign="center"
+              vertical
               inverted
-              style={{
-                borderBottom: 'none',
-                display: 'inline',
-                textAlign: 'left',
-              }}
             >
-              <Menu.Item
-                onClick={this.handleToggle}
-                style={{
-                  display: 'inline',
-                }}
+              <Menu
+                inverted
+                fixed={fixed ? 'top' : null}
+                pointing={!fixed}
+                secondary={!fixed}
               >
-                <Icon name="sidebar" />
-              </Menu.Item>
-            </Menu>
-          </Segment>
+                <Menu.Item
+                  onClick={this.handleToggle}
+                >
+                  <Icon name="sidebar" />
+                </Menu.Item>
+              </Menu>
+            </Segment>
+          </Visibility>
           {children}
         </Sidebar.Pusher>
       </Responsive>

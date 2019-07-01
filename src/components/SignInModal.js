@@ -30,16 +30,17 @@ class SignInModal extends Component {
   }
 
   render() {
+    const { modalOpen } = this.state;
     return (
       <Modal
-        open={this.state.modalOpen}
+        open={modalOpen}
         onClose={this.handleClose}
         trigger={(
           <Button
             onClick={this.handleOpen}
             className="link inverted"
           >
-            <Icon name="sign in" />
+            <Icon name="sign in" style={{ marginLeft: '0.8rem' }} />
             Sign In
           </Button>
         )}
@@ -53,29 +54,29 @@ class SignInModal extends Component {
             <SignInForm ref={this.createdRef} />
           </Container>
         </Modal.Content>
-            <Modal.Actions>
-              <Container>
-                <Button.Group>
-                  <Button
-                    id="form-button-control-cancel"
-                    icon="times"
-                    content="Cancel"
-                    color="red"
-                    onClick={this.handleClose}
-                  />
-                  <Button
-                    id="form-button-control-confirm"
-                    icon="sign in"
-                    content="Sign In"
-                    color="blue"
-                    onClick={this.handleFormSubmit}
-                  />
-                </Button.Group>
-              </Container>
-            </Modal.Actions>
+        <Modal.Actions>
+          <Container>
+            <Button.Group>
+              <Button
+                id="form-button-control-cancel"
+                icon="times"
+                content="Cancel"
+                color="red"
+                onClick={this.handleClose}
+              />
+              <Button
+                id="form-button-control-confirm"
+                icon="sign in"
+                content="Sign In"
+                color="blue"
+                onClick={this.handleFormSubmit}
+              />
+            </Button.Group>
+          </Container>
+        </Modal.Actions>
       </Modal>
     );
-  };
-};
+  }
+}
 
 export default SignInModal;

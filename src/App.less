@@ -11,17 +11,19 @@
 @import '../node_modules/tachyons-less/tachyons.less';
 
 /* page header bits */
-.pageheaderh1 {
-  font-size: 5rem;
+.pageheader1 {
   font-weight: light;
   color: @pageHeaderColor;
 }
-.pageheaderh1.desktop.landing {
-}
-.pageheaderh2 {
-  .f3();
-  margin-top: @spacing-large;
+.pageheader2 {
   color: @pageSubHeaderColor;
+}
+
+.ui.segment.fixed {
+  .fixed();
+  .top-0();
+  .left-0();
+  width: 100%;
 }
 
 /* buttons and header menu */
@@ -30,6 +32,9 @@
   box-shadow: none !important;
   background: transparent;
   font-size: inherit;
+}
+.sidebar.menu > .ui.button.link.inverted {
+  .pv3();
 }
 .ui.button.link.inverted {
   color: @invertedTextColor !important;

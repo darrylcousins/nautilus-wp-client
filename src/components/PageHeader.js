@@ -12,18 +12,20 @@ import {
   Segment,
   Header,
   Menu,
-  Responsive,
+  Visibility,
 } from 'semantic-ui-react';
 import NautilusIcon from './NautilusIcon';
 import ContactMenu from './ContactMenu';
 import SearchInput from './SearchInput';
-import getWidth from '../lib/GetWidth';
 
 class PageHeader extends Component {
   constructor(props) {
     super(props);
+    this.hideFixedMenu = this.hideFixedMenu.bind(this);
+    this.showFixedMenu = this.showFixedMenu.bind(this);
     this.state = {
       landing: props.landing,
+      fixed: false,
     };
   }
 
@@ -36,16 +38,21 @@ class PageHeader extends Component {
     }
   }
 
+  hideFixedMenu() { this.setState({ fixed: false }); }
+
+  showFixedMenu() { this.setState({ fixed: true }); }
+
   render() {
-    const { landing } = this.state;
+    const { landing, fixed } = this.state;
     const header1 = 'Nautilus Braids';
     const header2 = 'Makers of high performance braided rope';
     const iconColor = '#E3DAC9';
     return (
       <div>
-        <Responsive
-          getWidth={getWidth}
-          minWidth={Responsive.onlyTablet.minWidth}
+        <Visibility
+          once={false}
+          onBottomPassed={this.showFixedMenu}
+          onBottomPassedReverse={this.hideFixedMenu}
         >
           <Segment
             inverted
@@ -54,70 +61,22 @@ class PageHeader extends Component {
               minHeight: landing ? 700 : 30,
             }}
             vertical
-          >
-            <SearchInput />
-            <Header
-              inverted
-              as="h1"
-              textAlign={landing ? 'center' : 'left'}
-              style={landing ? { marginTop: '5em' } : { margin: '0em 0em 0em 2em' }}
-            >
-              <NautilusIcon
-                scaleNumber={landing ? 2 : 1}
-                color={iconColor}
-              />
-              <Header.Content
-                className={landing ? 'pageheaderh1 desktop landing' : 'pageheaderh1 desktop'}
-              >
-                { header1 }
-                <Header.Subheader className="tl">
-                  <Header.Content
-                    className={landing ? 'pageheaderh2 desktop landing' : 'pageheaderh2 desktop'}
-                  >
-                    { header2 }
-                  </Header.Content>
-                </Header.Subheader>
-                <Menu
-                  inverted
-                  borderless
-                  size={landing ? 'large' : 'tiny'}
-                  style={{
-                    paddingLeft: '1em',
-                  }}
-                >
-                  <ContactMenu />
-                </Menu>
-              </Header.Content>
-            </Header>
-          </Segment>
-        </Responsive>
-        <Responsive
-          getWidth={getWidth}
-          maxWidth={Responsive.onlyTablet.minWidth}
-        >
-          <Segment
-            textAlign="center"
-            inverted
-            vertical
+            className={fixed ? 'fixed' : ''}
           >
             <SearchInput />
             <Header
               as="h1"
+              size="huge"
               textAlign="left"
-              style={{ marginLeft: '1em' }}
             >
               <NautilusIcon
                 scaleNumber={landing ? 1 : 0.8}
                 color={iconColor}
               />
-              <Header.Content
-                className={landing ? 'pageheaderh1 mobile landing' : 'pageheaderh1 mobile'}
-              >
+              <Header.Content className="pageheader1">
                 { header1 }
-                <Header.Subheader style={{ textAlign: 'left' }}>
-                  <Header.Content
-                    className={landing ? 'pageheaderh2 mobile landing' : 'pageheaderh2 mobile'}
-                  >
+                <Header.Subheader>
+                  <Header.Content className="pageheader2">
                     { header2 }
                   </Header.Content>
                 </Header.Subheader>
@@ -136,7 +95,7 @@ class PageHeader extends Component {
               </Header.Content>
             </Header>
           </Segment>
-        </Responsive>
+        </Visibility>
       </div>
     );
   }

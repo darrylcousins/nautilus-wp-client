@@ -6,14 +6,13 @@
  * Created at    :
  * Last modified :
  */
-import React, { Component, createRef } from 'react';
+import React, { Component } from 'react';
 import {
   Form,
   Input,
-  Button,
   Message,
 } from 'semantic-ui-react';
-import { emailRegex, nameRegex, messageRegex } from '../lib/Regex';
+import { emailRegex } from '../lib/Regex';
 
 class SignInForm extends Component {
   state = {
@@ -21,7 +20,7 @@ class SignInForm extends Component {
     password: '',
     formError: false,
     formSuccess: false,
-    formloading: false,
+    formLoading: false,
     emailError: false,
     passwordError: false,
     submittedEmail: '',
@@ -31,18 +30,18 @@ class SignInForm extends Component {
   handleChange = (e, { name, value }) => this.setState({ [name]: value });
 
   handleSubmit = () => {
-    const { email, password } = this.state
+    const { email, password } = this.state;
     const emailError = !emailRegex.test(email);
     const passwordError = password === '';
     this.setState({
       emailError,
       passwordError,
-    })
+    });
     if (emailError || passwordError) {
       this.setState({
         formError: true,
         formLoading: false,
-      })
+      });
     } else {
       this.setState({
         submittedEmail: email,
@@ -50,7 +49,7 @@ class SignInForm extends Component {
         formSuccess: true,
         formError: false,
         formLoading: false,
-      })
+      });
     }
   }
 
@@ -71,16 +70,17 @@ class SignInForm extends Component {
         error={formError}
         success={formSuccess}
         loading={formLoading}
-        onSubmit={this.handleSubmit}>
+        onSubmit={this.handleSubmit}
+      >
         <Message
           success
-          content='Thank you, welcome.'
+          content="Thank you, welcome."
         />
         <Message
           error={emailError}
           hidden
-          content='Please enter a valid email.'
-          />
+          content="Please enter a valid email."
+        />
         <Form.Field
           required
           id="form-textarea-control-email"
@@ -99,8 +99,8 @@ class SignInForm extends Component {
         <Message
           error={passwordError}
           hidden
-          content='Please enter a password.'
-          />
+          content="Please enter a password."
+        />
         <Form.Field
           required
           id="form-textarea-control-password"
@@ -118,12 +118,12 @@ class SignInForm extends Component {
         />
         <Message
           error
-          header={`I'm, sorry that won't work.`}
-          content='Valid email and password please.'
+          header="Sorry the data does not validate."
+          content="Valid email and password please."
         />
       </Form>
     );
-  };
-};
+  }
+}
 
 export default SignInForm;

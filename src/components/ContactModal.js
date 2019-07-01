@@ -26,21 +26,21 @@ class ContactModal extends Component {
   handleClose = () => this.setState({ modalOpen: false })
 
   handleFormSubmit = () => {
-    console.log(this.createdRef.current);
     this.createdRef.current.handleSubmit();
   }
 
   render() {
+    const { modalOpen } = this.state;
     return (
       <Modal
-        open={this.state.modalOpen}
+        open={modalOpen}
         onClose={this.handleClose}
         trigger={(
           <Button
             onClick={this.handleOpen}
             className="link inverted"
           >
-            <Icon name="linkify" style={{ marginLeft: '0.8rem' }}/>
+            <Icon name="linkify" style={{ marginLeft: '0.8rem' }} />
             Contact
           </Button>
         )}
@@ -76,7 +76,7 @@ class ContactModal extends Component {
         </Modal.Actions>
       </Modal>
     );
-  };
-};
+  }
+}
 
 export default ContactModal;

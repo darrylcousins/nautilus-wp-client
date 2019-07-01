@@ -60,7 +60,6 @@ class Page extends Component {
       const slug = Page.getSlugFromMatch(nextProps);
       // const landing = slug === 'index';
       const landing = Page.isLandingPage(nextProps);
-      console.log('Changed props, landing: ', landing);
       this.setState({
         externalData: null,
         landing,
@@ -103,7 +102,7 @@ class Page extends Component {
       .then(res => res.json())
       .then(res => this.setState({ externalData: res.data.pages.edges[0].node }))
       .catch((error) => {
-        console.error(error);
+        // console.error(error);
         this.setState({ externalData: { title: `${error}` } });
       });
   }
