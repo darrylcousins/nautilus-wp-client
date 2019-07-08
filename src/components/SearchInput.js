@@ -17,7 +17,10 @@ const initialState = { isLoading: false, results: [], value: '' };
 class SearchInput extends Component {
   state = initialState
 
-  handleResultSelect = (e, { result }) => this.setState({ value: result.title })
+  handleResultSelect = (e, { result }) => {
+    console.log('result ', result);
+    //this.setState({ value: result.title });
+  }
 
   componentWillUnmount = () => {
     if (this.asyncRequest && 'cancel' in this.asyncRequest) {
@@ -26,6 +29,7 @@ class SearchInput extends Component {
   }
 
   handleSearchChange = (e, { input }) => {
+    console.log('input ', input);
     this.setState({ isLoading: true, value: input });
 
     setTimeout(() => {
@@ -65,6 +69,14 @@ class SearchInput extends Component {
 
   render() {
     const { isLoading, value, results } = this.state;
+    results.forEach((element, index) => {
+      if (typeof element.node !== 'undefined') {
+        results[index] = {
+          title: element.node.slug,
+          description: element.node.title,
+        };
+      };
+    });
     return (
       <Search
         placeholder="Search ..."

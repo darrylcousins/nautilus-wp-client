@@ -41,8 +41,8 @@ class DesktopContainer extends Component {
       >
         <Visibility
           once={false}
-          onBottomPassed={this.showFixedMenu}
-          onBottomPassedReverse={this.hideFixedMenu}
+          onTopPassed={this.showFixedMenu}
+          onTopPassedReverse={this.hideFixedMenu}
         >
           <Segment
             inverted
@@ -51,10 +51,7 @@ class DesktopContainer extends Component {
           >
             <Menu
               inverted
-              fixed={fixed ? 'top' : null}
-              pointing={!fixed}
-              secondary={!fixed}
-              size="large"
+              fixed="top"
             >
               <HeaderMenu />
             </Menu>

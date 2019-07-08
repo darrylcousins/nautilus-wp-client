@@ -13,6 +13,8 @@ import {
   Header,
   Menu,
   Visibility,
+  Grid,
+  Sidebar,
 } from 'semantic-ui-react';
 import NautilusIcon from './NautilusIcon';
 import ContactMenu from './ContactMenu';
@@ -21,11 +23,11 @@ import SearchInput from './SearchInput';
 class PageHeader extends Component {
   constructor(props) {
     super(props);
-    this.hideFixedMenu = this.hideFixedMenu.bind(this);
-    this.showFixedMenu = this.showFixedMenu.bind(this);
+    this.hideHeader = this.hideHeader.bind(this);
+    this.showHeader = this.showHeader.bind(this);
     this.state = {
       landing: props.landing,
-      fixed: false,
+      visible: false,
     };
   }
 
@@ -38,48 +40,29 @@ class PageHeader extends Component {
     }
   }
 
-  hideFixedMenu() { this.setState({ fixed: false }); }
+  hideHeader() { this.setState({ visible: false }); }
 
-  showFixedMenu() { this.setState({ fixed: true }); }
+  showHeader() { this.setState({ visible: true }); }
 
   render() {
-    const { landing, fixed } = this.state;
+    const { landing, visible } = this.state;
     const header1 = 'Nautilus Braids';
     const header2 = 'Makers of high performance braided rope';
     const iconColor = '#E3DAC9';
+    const iconMultiplier = landing ? (visible ? 0.3 : 1) : (visible ? 0.4 : 0.8);
     return (
-      <div>
-        <Visibility
-          once={false}
-          onBottomPassed={this.showFixedMenu}
-          onBottomPassedReverse={this.hideFixedMenu}
+        <Segment
+          inverted
+          textAlign="center"
+          style={{
+            minHeight: landing ? 700 : 30,
+          }}
+          vertical
+          className={visible ? 'fixed' : ''}
         >
-          <Segment
-            inverted
-            textAlign="center"
-            style={{
-              minHeight: landing ? 700 : 30,
-            }}
-            vertical
-            className={fixed ? 'fixed' : ''}
-          >
-            <SearchInput />
-            <Header
-              as="h1"
-              size="huge"
-              textAlign="left"
-            >
-              <NautilusIcon
-                scaleNumber={landing ? 1 : 0.8}
-                color={iconColor}
-              />
-              <Header.Content className="pageheader1">
-                { header1 }
-                <Header.Subheader>
-                  <Header.Content className="pageheader2">
-                    { header2 }
-                  </Header.Content>
-                </Header.Subheader>
+          <Grid>
+            <Grid.Row columns="2">
+              <Grid.Column>
                 <Menu
                   stackable
                   borderless
@@ -92,11 +75,33 @@ class PageHeader extends Component {
                 >
                   <ContactMenu />
                 </Menu>
+              </Grid.Column>
+              <Grid.Column>
+                <SearchInput />
+              </Grid.Column>
+            </Grid.Row>
+          </Grid>
+          <Header
+            inverted
+            as="h1"
+            size="huge"
+            textAlign="left"
+            style={{ margin: "0rem 1rem 0rem 1rem" }}
+          >
+          <NautilusIcon
+            scaleNumber={iconMultiplier}
+            color={iconColor}
+          />
+          <Header.Content className="pageheader1">
+            { header1 }
+            <Header.Subheader>
+              <Header.Content className="pageheader2">
+                { header2 }
               </Header.Content>
-            </Header>
-          </Segment>
-        </Visibility>
-      </div>
+            </Header.Subheader>
+          </Header.Content>
+        </Header>
+      </Segment>
     );
   }
 }

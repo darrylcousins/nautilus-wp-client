@@ -82,7 +82,7 @@ class Search extends SemanticSearch {
         renderer={resultRenderer}
         className="inverted transparent"
         {...result}
-        id={offsetIndex} // Used to lookup the result on item click
+        id={offsetIndex}
       />
     );
   }

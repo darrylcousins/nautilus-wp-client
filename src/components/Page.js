@@ -14,6 +14,8 @@ import {
   Container,
   Header,
   Card,
+  Sidebar,
+  Segment,
 } from 'semantic-ui-react';
 import fetchPromise from '../lib/DataFetch';
 import PageHeader from './PageHeader';
@@ -157,16 +159,16 @@ class Page extends Component {
     return (
       <div>
         <PageHeader landing={landing} />
-        <Container
-          style={{
-            paddingTop: '2em',
-          }}
-        >
-          <Content
-            title={externalData.title}
-            content={externalData.content}
-          />
-        </Container>
+          <Container
+            style={{
+              paddingTop: '2em',
+            }}
+          >
+            <Content
+              title={externalData.title}
+              content={externalData.content}
+            />
+          </Container>
       </div>
     );
   }

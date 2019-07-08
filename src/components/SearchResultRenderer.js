@@ -14,14 +14,14 @@ import {
   Icon,
 } from 'semantic-ui-react';
 
-const SearchResultRenderer = ({ node }) => (
+const SearchResultRenderer = ({ title, description }) => (
   <Label
     className="search"
     as={Link}
-    to={node.slug}
+    to={title}
   >
     <Icon name="linkify" />
-    { node.title }
+    { description }
   </Label>
 );
 
@@ -31,7 +31,7 @@ SearchResultRenderer.defaultProps = {
 SearchResultRenderer.propTypes = {
   node: PropTypes.shape({
     title: PropTypes.string,
-    slug: PropTypes.string,
+    description: PropTypes.string,
   }),
 };
 

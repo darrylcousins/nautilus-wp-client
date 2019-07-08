@@ -82,6 +82,24 @@ Upgrade [Nautilus Braids] website to [Wordpress].
 
 * sign in and contact forms
 
+## ... not paying attention ...
+
+## 06 July 2019 (2hrs)
+
+* big change in direction
+* created new git repository at [Nautilus]
+
+## 07 July 2019 (3hrs)
+
+* getting up to speed with themes
+* using semantic ui
+
+## 08 July 2019 (3hrs)
+
+* responsive menu
+* search form
+* layout
+
 # TODO
 
 * nice error page if http request error or empty
